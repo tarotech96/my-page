@@ -19,13 +19,14 @@ const getPosts = async (req, res) => {
       res.status(404).send("No post record found");
     } else {
       data.forEach((doc) => {
+        const { data } = doc.data();
         const post = new Post(
           doc.id,
-          doc.data().title,
-          doc.data().author,
-          doc.data().body,
-          doc.data().createdAt,
-          doc.data().imgUrl
+          data.title,
+          data.author,
+          data.body,
+          data.createdAt,
+          data.image
         );
         listPosts.push(post);
       });
@@ -44,12 +45,10 @@ const getPosts = async (req, res) => {
  */
 const createPost = async (req, res) => {
   try {
-    const { payload } = req.body;
-    console.log(payload)
-    await firestore.collection("posts").doc().set(payload);
+    await firestore.collection("posts").doc().set({ data: req.body });
     res.status(200).send({
       message: "Inserted new post successfully",
-      data: newPost,
+      data: req.body,
     });
   } catch (error) {
     res.status(500).send(error.message);
@@ -65,12 +64,11 @@ const createPost = async (req, res) => {
 const updatePost = async (req, res) => {
   try {
     const postId = req.params.postId;
-    const { payload } = req.body;
     const post = await firestore.collection("posts").doc(postId);
     if (!post.exists) {
       res.status(404).send("Post with given id not found");
     } else {
-      await post.update(payload);
+      await post.update({ data: req.body });
       res.status(200).send({
         message: "Updated post successfully",
         data: post,

@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  frontend:
+    image: frontend
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    networks:
+      - my-app
+  backend:
+    image: backend
+    ports:
+      - "8080:8080"
+    networks:
+      - my-app
+  db:
+    image: firebase
+    ports:
+      - "77777:77777"
+    networks:
+      - "my-app"
+    volumes:
+      - ./firebase/emulators/:/opt/workspace:cached
+      - ./firebase/bin/:/root/.cache:cached
+      - ./firebase/config/:/root/.config:cached
+networks: 
+  my-app:
+    driver: bridge
+volumes: 
+  firebase-data:
+    driver: local

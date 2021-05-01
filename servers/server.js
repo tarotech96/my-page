@@ -7,9 +7,8 @@ import config from "./config.js";
 
 // config app
 app
-  .use(express.json())
-  .use(bodyParser.json())
-  .use(cors())
+  .use(bodyParser.json({ limit: '50mb'}))
+  .use(cors());
 
 // app router
 appRoutes(app);

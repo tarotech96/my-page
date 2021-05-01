@@ -8,12 +8,18 @@ html {
 }
 /* card */
 .card {
-  width: 100%;
+  width: 300px;
   height: 100%;
+  max-width: 100%;
   max-height: 95%;
 }
 
 /* dialog's width */
 .MuiDialog-paper {
   width: 1000px;
+}
+
+/* hide switch of material-ui */
+.MuiSwitch-root {
+  display: none !important;
 }

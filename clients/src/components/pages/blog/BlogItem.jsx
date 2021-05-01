@@ -16,11 +16,12 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import logo from "assets/images/logo.png";
+import { formatDateWithPadding } from "constants/utilities";
 
 const useStyles = makeStyles((theme) => ({
   media: {
-    height: 0,
-    paddingTop: "56.25%", // 16:9,
+    height: 150,
+    // paddingTop: "56.25%", // 16:9,
     cursor: "pointer",
   },
   avatar: {
@@ -34,7 +35,7 @@ BlogItem.propTypes = {
 
 function BlogItem({ item }) {
   const classes = useStyles();
-
+ 
   return (
     <div className="blog-item">
       <Card className="card">
@@ -53,7 +54,7 @@ function BlogItem({ item }) {
             </IconButton>
           }
           title={item.title}
-          subheader={item.createdAt}
+          subheader={formatDateWithPadding(item.createdAt, 'yyyy-MM-dd')}
         />
         <CardMedia className={classes.media} image={item.imgUrl || logo} />
         <CardContent>

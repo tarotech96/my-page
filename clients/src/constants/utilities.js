@@ -23,4 +23,34 @@ function formatDateWithPadding(date, format) {
   return format
 }
 
-export { formatDateWithPadding }
+/**
+ * get week day from given year, month, day
+ * @param year 
+ * @param month 
+ * @param day 
+ * @return desired week day
+ */
+const findWeekDay = (year, month, day) => {
+  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+  var weekDay = days[new Date(year, --month, day).getDay()]
+  switch (weekDay) {
+    case 'Sunday':
+      return '日'
+    case 'Monday':
+      return '月'
+    case 'Tuesday':
+      return '火'
+    case 'Wednesday':
+      return '水'
+    case 'Thursday':
+      return '木'
+    case 'Friday':
+      return '金'
+    case 'Saturday':
+      return '土'
+    default:
+      return ''
+  }
+}
+
+export { formatDateWithPadding, findWeekDay }

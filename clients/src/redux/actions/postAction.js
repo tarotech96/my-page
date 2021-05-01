@@ -1,4 +1,4 @@
-import { createActions } from "redux-actions";
+import { createAction, createActions } from "redux-actions";
 
 export const getType = (reduxAction) => {
   return reduxAction().type;
@@ -15,3 +15,6 @@ export const createPost = createActions({
   createPostSuccess: (payload) => payload,
   createPostFailure: (error) => error,
 });
+
+export const openModal = createAction('OPEN_MODAL');
+export const closeModal = createAction('CLOSE_MODAL');

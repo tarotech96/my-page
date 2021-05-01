@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import Container from "@material-ui/core/Container";
 
 function Home() {
@@ -6,7 +6,7 @@ function Home() {
     <Container maxWidth="sm">
       <div>This is home page</div>
     </Container>
-  )
+  );
 }
 
-export default Home
+export default Home;

@@ -1,30 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Blog.css";
 import { Grid, Button } from "@material-ui/core";
 import BlogItem from "./BlogItem";
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from "redux/actions/postAction";
 import ModalCreatePost from "./createPost/ModalCreatePost";
+import { getPosts, openModal } from "redux/actions/postAction";
 
 function Blog() {
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.getAllPosts);
-  const [isShowModal, setIsShowModal] = useState(false);
+  const { data } = useSelector((state) => state.postReducers);
+  const { isOpen } = useSelector((state) => state.modalReducers);
 
   //ComponentDidMount
   useEffect(() => {
-    dispatch(actions.getPosts.getPostsRequest());
+    dispatch(getPosts.getPostsRequest());
   }, [dispatch]);
 
   return (
     <div className="bl__container">
       <Grid>
-        {isShowModal && (
-          <ModalCreatePost
-            isShowModal={isShowModal}
-            setIsShowModal={setIsShowModal}
-          />
-        )}
+        {isOpen && <ModalCreatePost isOpen={isOpen} />}
         <Grid item xs={12} sm={12}>
           <Grid container justify="center">
             {data && data.length
@@ -33,7 +28,7 @@ function Blog() {
           </Grid>
         </Grid>
       </Grid>
-      <Button onClick={() => setIsShowModal(true)} className="bl__btn-add">
+      <Button onClick={() => dispatch(openModal())} className="bl__btn-add">
         <i className="fas fa-plus-circle"></i>
       </Button>
     </div>

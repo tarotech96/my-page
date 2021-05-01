@@ -1,6 +1,6 @@
 import React from "react";
-import './Header.css'
-import logo from "./../../assets/images/logo.png";
+import "./Header.css";
+import logo from "assets/images/logo.png";
 import { Link } from "react-router-dom";
 
 function Header() {
@@ -20,6 +20,11 @@ function Header() {
           </li>
           <li>
             <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/login">
+              <i className="fas fa-sign-in-alt"></i>
+            </Link>
           </li>
         </ul>
       </div>

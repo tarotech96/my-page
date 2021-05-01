@@ -1,10 +1,5 @@
 export const initialState = {
-  posts: {
     isLoading: false,
+    isSucceeded: false,
     data: [],
-  },
-  post: {
-    isSuccess: false,
-    data: {},
-  },
 }

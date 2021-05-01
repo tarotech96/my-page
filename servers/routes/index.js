@@ -1,6 +1,7 @@
 import postRouter from "./postRouter.js";
+import userRouter from "./userRouter.js";
 
-const routes = [postRouter];
+const routes = [postRouter, userRouter];
 
 const appRoutes = (app) => {
   routes.map((route) => {

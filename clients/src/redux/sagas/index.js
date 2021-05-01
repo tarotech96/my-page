@@ -1,32 +1,45 @@
 import { takeLatest, put, call } from "redux-saga/effects";
-import * as actions from "./../actions/postAction";
-import * as api from "./../../api/api";
+import { getPosts, createPost } from "redux/actions/postAction.js";
+import * as api from "api/api.js";
+import { login } from "redux/actions/userAction";
 
-function* getPosts() {
+function* getAllPosts() {
   try {
     const res = yield call(api.getPosts);
     if (res.data.length) {
-      yield put(actions.getPosts.getPostsSuccess(res.data));
+      yield put(getPosts.getPostsSuccess(res.data));
     }
   } catch (error) {
-    yield put(actions.getPosts.getPostsFailure(error));
+    yield put(getPosts.getPostsFailure(error));
   }
 }
 
-function* createPost(data) {
+function* createNewPost(action) {
   try {
-    const res = yield call(api.createPost(data));
+    const res = yield call(api.createPost, action.payload);
     if (res) {
-      yield put(actions.createPost.createPostSuccess(res.data));
+      yield put(createPost.createPostSuccess(res.data));
     }
   } catch (error) {
-    yield put(actions.createPost.createPostFailure(error));
+    yield put(createPost.createPostFailure(error));
+  }
+}
+
+function* loginAction(action) {
+  try {
+    const res = yield call(api.login, action.payload);
+    if (res) {
+      yield put(login.loginSuccess(res.data));
+    }
+  } catch (error) {
+    yield put(login.loginFailure(error));
   }
 }
 
 function* mySagas() {
-  yield takeLatest(actions.getPosts.getPostsRequest, getPosts);
-  yield takeLatest(actions.createPost.createPostRequest, createPost);
+  yield takeLatest(getPosts.getPostsRequest, getAllPosts);
+  yield takeLatest(createPost.createPostRequest, createNewPost);
+  yield takeLatest(login.loginRequest, loginAction);
 }
 
 export default mySagas;
