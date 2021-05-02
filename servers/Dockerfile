@@ -1,6 +1,6 @@
 FROM node:12.18.1
 
-WORKDIR /build
+WORKDIR /app
 
 COPY ./package.json ./
 COPY ./package-lock.json ./
@@ -11,4 +11,4 @@ COPY . .
 
 EXPOSE 8080
 
-CMD ["index.js"]
+CMD ["node", "server.js"]

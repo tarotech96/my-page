@@ -13,19 +13,6 @@ services:
       - "8080:8080"
     networks:
       - my-app
-  db:
-    image: firebase
-    ports:
-      - "77777:77777"
-    networks:
-      - "my-app"
-    volumes:
-      - ./firebase/emulators/:/opt/workspace:cached
-      - ./firebase/bin/:/root/.cache:cached
-      - ./firebase/config/:/root/.config:cached
 networks: 
   my-app:
     driver: bridge
-volumes: 
-  firebase-data:
-    driver: local

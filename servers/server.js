@@ -7,6 +7,7 @@ import config from "./config.js";
 
 // config app
 app
+  .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json({ limit: '50mb'}))
   .use(cors());
 
