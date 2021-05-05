@@ -1,20 +1,22 @@
-const { modalState } = require("redux/states/modal");
+import { OPEN_MODAL, CLOSE_MODAL } from 'constants/actionType'
+
+const { modalState } = require('redux/states/modal')
 
 const modalReducers = (state = modalState, action) => {
   switch (action.type) {
-    case "OPEN_MODAL":
+    case OPEN_MODAL:
       return {
         ...state,
-        isOpen: true,
-      };
-    case "CLOSE_MODAL":
+        isOpen: true
+      }
+    case CLOSE_MODAL:
       return {
         ...state,
-        isOpen: false,
-      };
+        isOpen: false
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default modalReducers;
+export default modalReducers

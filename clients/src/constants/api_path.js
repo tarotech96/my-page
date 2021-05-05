@@ -1,5 +1,7 @@
-export const GET_LIST_POST = "/list";
-export const CREATE_POST = "/create";
-export const UPDATE_POST = "/update";
-export const LOGIN = "/login";
-export const REGISTER = "/register";
+export const GET_LIST_POST = '/list'
+export const CREATE_POST = '/create'
+export const UPDATE_POST = '/update'
+export const GET_POST_BY_ID = '/post'
+export const LOGIN = '/login'
+export const REGISTER = '/register'
+export const UPDATE_PROFILE = '/update-profile'

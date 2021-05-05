@@ -1,9 +1,11 @@
+"use strict";
+
 class User {
   constructor(id, email, username, image, phone) {
     this.id = id;
     this.email = email;
     this.username = username;
-    this.image = image;
+    this.avatar = image;
     this.phone = phone;
   }
 }

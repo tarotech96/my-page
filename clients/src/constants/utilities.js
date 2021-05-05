@@ -1,7 +1,7 @@
 /**
  * Format date with given specific format
- * @param date 
- * @param format 
+ * @param date
+ * @param format
  * @return formatted date
  */
 function formatDateWithPadding(date, format) {
@@ -25,9 +25,9 @@ function formatDateWithPadding(date, format) {
 
 /**
  * get week day from given year, month, day
- * @param year 
- * @param month 
- * @param day 
+ * @param year
+ * @param month
+ * @param day
  * @return desired week day
  */
 const findWeekDay = (year, month, day) => {
@@ -53,4 +53,13 @@ const findWeekDay = (year, month, day) => {
   }
 }
 
-export { formatDateWithPadding, findWeekDay }
+/**
+ * Get type of action
+ * @param reduxAction sent action
+ * @return type
+ */
+const getType = (reduxAction) => {
+  return reduxAction().type
+}
+
+export { formatDateWithPadding, findWeekDay, getType }

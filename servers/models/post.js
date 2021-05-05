@@ -1,3 +1,4 @@
+"use strict";
 class Post {
   constructor(id, title, author, body, createdAt, imgUrl) {
     this.id = id;
@@ -7,7 +8,6 @@ class Post {
     this.createdAt = createdAt;
     this.imgUrl = imgUrl;
   }
-
 }
 
 export default Post;

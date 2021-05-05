@@ -1,0 +1,39 @@
+.footer .ft__socials,
+.footer .ft__items,
+.footer .ft__menus {
+  display: flex;
+  margin-top: 2rem;
+  align-items: center;
+}
+
+.footer .ft__socials li,
+.footer .ft__items li,
+.footer .ft__menus li {
+  list-style: none;
+  margin: 10px;
+}
+
+.footer .ft__socials li a {
+  font-size: 2rem;
+  color: #63913b;
+}
+
+.footer .ft__menus li a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: #5d963c;
+  font-family: 'Monsterrat';
+}
+
+.footer .ft__menus li {
+  color: #5d963c;
+}
+
+
+.footer .ft__sign {
+  list-style: none;
+  color: #fff;
+  font-size: 1.2rem;
+  font-family: 'Monsterrat';
+  font-weight: 600;
+}

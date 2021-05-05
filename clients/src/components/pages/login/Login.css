@@ -34,6 +34,10 @@
   padding: 5px;
 }
 
+.login .MuiCardActions-root {
+  flex-direction: column;
+}
+
 .login .MuiCardActions-root > button {
   margin: 1rem auto;
   border-radius: 4px;

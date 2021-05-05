@@ -1,12 +1,8 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from "react-router-dom";
-import Header from "components/header/Header";
-import Footer from "components/footer/Footer";
-import routes from "routes";
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Header from 'components/header/Header'
+import Footer from 'components/footer/Footer'
+import routes from 'routes'
 
 function App() {
   /**
@@ -18,30 +14,23 @@ function App() {
     if (routes.length) {
       return routes.map((route, index) => {
         if (route.path) {
-          return (
-            <Route
-              exact
-              path={route.path}
-              component={route.component}
-              key={index}
-            />
-          );
+          return <Route exact path={route.path} component={route.component} key={index} />
         } else {
-          return null;
+          return null
         }
-      });
+      })
     }
-  };
+  }
 
   return (
     <Router>
       <Header />
-      <Switch>
-        {getRoutes(routes)}
-      </Switch>
+      <div className="app-body">
+        <Switch>{getRoutes(routes)}</Switch>
+      </div>
       <Footer />
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

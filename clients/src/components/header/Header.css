@@ -1,16 +1,7 @@
-.app__nav {
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  align-items: center;
-  height: 60px;
-  background-color: #1976d2;
-}
-
 .app__nav .app__nav-logo {
   display: flex;
   align-items: center;
-  width: 80%;
+  flex: 1;
   margin-left: 3rem;
 }
 
@@ -24,40 +15,61 @@
 .app__nav .app__nav-logo span {
   font-size: 1rem;
   color: #fff;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   margin-left: 10px;
-}
-
-.app__nav .app__nav-links {
-  width: calc(100% - 80%);
 }
 
 .app__nav .app__nav-links ul {
   display: flex;
   list-style: none;
+  flex-direction: row;
+  align-items: center;
 }
 
-.app__nav .app__nav-links ul li:nth-child(1) {
+.app__nav .app__nav-links ul li:not(:last-child) {
   margin-right: 10px;
-}
-
-.app__nav .app__nav-links ul li:nth-child(2) {
-  margin-right: 10px;
-}
-
-.app__nav .app__nav-links ul li:last-child {
-  margin-left: 1rem;
 }
 
 .app__nav .app__nav-links ul li a {
   color: #fff;
   font-size: 1.2rem;
   text-decoration: none;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
+}
+
+.app__nav .app__nav-links ul li:last-child {
+  margin-right: 1rem;
 }
 
 .app__nav .app__nav-links ul li a:hover {
-  color: #F4DA7E;
+  color: #f4da7e;
+}
+
+.app__nav .app__nav-links ul li .nav-loggedIn {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  color: #fff;
+}
+
+.app__nav .app__nav-links ul li .nav-loggedIn .u-profile,
+.app__nav .app__nav-links ul li .nav-loggedIn .u-logout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.app__nav .app__nav-links ul li .nav-loggedIn .u-profile {
+  margin: 0 5px;
+}
+
+.app__nav .app__nav-links ul li .nav-loggedIn a {
+  font-size: 1.2rem;
+  margin: 2px 0;
+}
+
+.app__nav .nav-mobile {
+  display: none;
 }
 
 @media screen and (max-width: 400px) {
@@ -67,18 +79,141 @@
     font-size: 0.9rem;
   }
 
+  .app__nav .app__nav-logo {
+    margin-left: 10px;
+  }
+
+  .app__nav .app__nav-logo img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .app__nav .app__nav-logo span {
+    font-size: 0.8rem;
+  }
+
   .app__nav .app__nav-links ul li a {
     font-size: 0.9rem;
   }
 
+  .app__nav .app__nav-links {
+    display: none;
+  }
+
+  .app__nav .nav-mobile {
+    display: block;
+  }
+
+  .app__nav .nav-mobile .nav-close {
+    display: none;
+  }
+
+  /* css close button */
+  .app__nav .nav-mobile .c-show {
+    position: absolute;
+    top: 10px;
+    right: 165px;
+    z-index: 10;
+    transform: scale(2);
+    cursor: pointer;
+    transition: all 0.5s;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 20px;
+    border-radius: 5px;
+    color: #fff;
+  }
+
+  .app__nav .nav-mobile .c-show i {
+    color: rgba(0, 0, 0, 0.54);
+  }
+  /**/
+
+  /* css nav links */
+  .app__nav .nav-mobile .nav-links {
+    display: none;
+  }
+
+  .app__nav .nav-mobile .l-show {
+    width: 200px;
+    height: 100%;
+    background: #24d86c;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 5;
+    transition: all 0.5s;
+  }
+
+  .app__nav .nav-mobile .l-show ul {
+    float: right;
+    margin-right: 30px;
+  }
+
+  .app__nav .nav-mobile .l-show ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    margin: 20px 0;
+  }
+
+  .app__nav .nav-mobile .l-show ul li a {
+    font-size: 1.5rem;
+  }
+
+  .app__nav .nav-mobile .l-show ul li .nav-loggedIn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .app__nav .nav-mobile .l-show ul li .nav-loggedIn .u-profile,
+  .app__nav .nav-mobile .l-show ul li .nav-loggedIn .u-logout {
+    display: flex;
+    align-items: center;
+  }
+
+  .app__nav .nav-mobile .l-show ul li .nav-loggedIn a {
+    margin: 10px 0;
+    font-size: 1.5rem;
+  }
+
+  .app__nav .nav-mobile .l-show ul li .nav-loggedIn i {
+    margin-right: 5px;
+    font-size: 1.2rem;
+    color: rgba(0,0,0,.54);
+  }
+
+  .app__nav .nav-mobile .hamburger {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 10rem;
+  }
+
+  .app__nav .nav-mobile .hamburger div {
+    width: 40px;
+    height: 5px;
+    background: #000;
+    margin: 5px 0;
+  }
 }
 
 @media screen and (max-width: 1020px) and (min-width: 500px) {
   .app__nav .app__nav-logo {
-    width: 50%;
+    width: 40%;
   }
 
   .app__nav .app__nav-links ul li a {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
+
+  .app__nav .app__nav-links ul li .nav-loggedIn a{
+    font-size: 0.8rem;
+  }
+
 }

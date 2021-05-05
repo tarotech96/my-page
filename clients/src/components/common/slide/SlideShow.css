@@ -1,0 +1,62 @@
+
+/* Hide previous and next button */
+.slide .slick-prev,
+.slide .slick-next {
+  display: none !important;
+}
+/**/
+
+.slide .slick-list .slick-track {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/* css size image */
+.slide .slick-list .slick-track img {
+  width: 550px;
+  height: 400px;
+  object-fit: cover;
+  max-width: 100%;
+}
+/**/
+
+/* css dots */
+.slide .slick-dots {
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+.slide .slick-dots li:nth-child(1),
+.slide .slick-dots li:nth-child(2),
+.slide .slick-dots li:nth-child(3){
+    margin: 0 5px;
+}
+/**/
+
+/* css button inside dot*/
+.slide .slick-dots li button {
+  cursor: pointer;
+  font-size: 0;
+  padding: 5px;
+  border-radius: 100%;
+  outline: none;
+  border-color: #80283c;
+  border-width: 1px;
+  background: #fff;
+  color: #fff;
+}
+
+.slide .slick-dots li button:hover {
+  background-color: #cf121a;
+  opacity: 0.9;
+}
+
+.slide .slick-dots .slick-active button{
+  background-color: #cf121a;
+}
+/**/

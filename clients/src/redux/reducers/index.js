@@ -1,12 +1,10 @@
-import { combineReducers } from "redux";
-import postReducers from "./postReducer.js";
-import userReducers from "./modalReducer.js";
-import modalReducers from "./modalReducer.js";
+import { combineReducers } from 'redux'
+import userReducers from './userReducer.js'
+import modalReducers from './modalReducer.js'
 
 const appReducers = combineReducers({
-  postReducers,
   userReducers,
-  modalReducers,
-});
+  modalReducers
+})
 
-export default appReducers;
+export default appReducers

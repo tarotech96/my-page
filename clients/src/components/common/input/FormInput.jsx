@@ -1,27 +1,39 @@
-import React from "react";
+import React from 'react'
 import PropTypes from 'prop-types'
-import { TextField } from "@material-ui/core";
+import { TextField } from '@material-ui/core'
 
 FormInput.propTypes = {
   label: PropTypes.string,
-  setData: PropTypes.func
+  defaultValue: PropTypes.string,
+  setData: PropTypes.func,
+  type: PropTypes.string,
+  disabled: PropTypes.bool,
+  name: PropTypes.string
 }
 
-function FormInput({ label, setData}) {
+FormInput.defaultProps = {
+  type: 'text',
+  defaultValue: '',
+  name: ''
+}
 
+function FormInput({ label, defaultValue, setData, type, disabled, name }) {
   const onChangeValue = (event) => {
-    setData(event.target.value);
+    setData(event.target.value)
   }
 
   return (
     <TextField
-      id="standard-basic"
+      id={`standard-basic_${label}`}
       label={label}
+      defaultValue={defaultValue}
+      name={name}
       style={{ marginBottom: 10 }}
       onChange={onChangeValue}
-      autoComplete="off"
+      type={type}
+      disabled={disabled}
     />
-  );
+  )
 }
 
-export default FormInput;
+export default FormInput

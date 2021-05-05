@@ -1,0 +1,42 @@
+/* css profile page */
+.pf__container {
+  margin-top: 5rem;
+  width: 600px;
+  max-width: 100%;
+  height: 800px;
+}
+
+/* css avatar image */
+.pf__container .pf__avatar img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.pf__container .pf__avatar img:hover {
+  box-shadow: 2px 2px 3px 0 rgb(0 0 0 / 5%);
+}
+
+.pf__container .pf__avatar .fileUploader .fileContainer img,
+.pf__container .pf__avatar .fileUploader .fileContainer p {
+  display: none;
+}
+
+.pf__container .pf__avatar .fileUploader .fileContainer button {
+  background-color: #1976d2;
+}
+
+/* css update profile button */
+.pf__container .pf__actions {
+  float: right;
+  margin: 1rem;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 375px) {
+  .pf__container {
+    margin-top: 0rem;
+  }
+}

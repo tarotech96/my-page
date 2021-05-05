@@ -1,3 +1,3 @@
 export const modalState = {
- isOpen: false,
-};
+  isOpen: false
+}

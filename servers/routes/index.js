@@ -1,3 +1,5 @@
+"use strict";
+
 import postRouter from "./postRouter.js";
 import userRouter from "./userRouter.js";
 

@@ -1,0 +1,43 @@
+{
+  "extends": [
+    "react-app",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {},
+      {
+        "usePrettierrc": true
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.js?(x)"
+      ],
+      "rules": {
+        "no-console": [
+          "warn",
+          {
+            "allow": [
+              "warn",
+              "error"
+            ]
+          }
+        ],
+        "eqeqeq": [
+          "error",
+          "smart"
+        ],
+        "import/newline-after-import": "error",
+        "import/no-duplicates": "error",
+        "no-dupe-keys": "error",
+        "no-useless-escape": "error",
+        "no-unused-vars": "error",
+        "no-mixed-operators": "error"
+      }
+    }
+  ]
+}

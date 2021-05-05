@@ -1,3 +1,5 @@
+"use strict";
+
 import firebase from "firebase";
 import config from "./config.js";
 

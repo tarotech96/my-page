@@ -30,10 +30,53 @@ const getPosts = async (req, res) => {
         );
         listPosts.push(post);
       });
-      res.status(200).send(listPosts);
+      res.status(200).send({
+        data: listPosts,
+        status: 1,
+      });
     }
   } catch (error) {
-    res.status(500).send(error.message);
+    res.status(500).send(error.code);
+  }
+};
+
+/**
+ * get a post by postId
+ * @param  req request from client
+ * @param  res response
+ * @return a post
+ */
+const getPostById = async (req, res) => {
+  try {
+    const { postId } = req.body;
+    const posts = await firestore.collection("posts");
+    const data = await posts.get(); // i can't get a doc by id like this firestore.collection("posts").doc(id).get()
+    const post = {};
+    if (data.empty) {
+      res.status(404).send("No post record found");
+    } else {
+      data.forEach((doc) => {
+        const { data } = doc.data();
+        if (doc.id === postId) {
+          res.status(200).send({
+            ...post,
+            id: doc.id,
+            title: data.title,
+            author: data.author,
+            body: data.body,
+            createdAt: data.createdAt,
+            image: data.image,
+          });
+        }
+      });
+      res.status(200).send(post);
+    }
+  } catch (error) {
+    if (error.code === "ERR_HTTP_HEADERS_SENT") {
+      return null;
+    } else {
+      res.status(500).send(error.code);
+    }
   }
 };
 
@@ -47,11 +90,11 @@ const createPost = async (req, res) => {
   try {
     await firestore.collection("posts").doc().set({ data: req.body });
     res.status(200).send({
-      message: "Inserted new post successfully",
       data: req.body,
+      status: 1,
     });
   } catch (error) {
-    res.status(500).send(error.message);
+    res.status(500).send(error.code);
   }
 };
 
@@ -75,8 +118,8 @@ const updatePost = async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(500).send(error.message);
+    res.status(500).send(error.code);
   }
 };
 
-export { getPosts, createPost, updatePost };
+export { getPosts, getPostById, createPost, updatePost };

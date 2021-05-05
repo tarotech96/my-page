@@ -2,9 +2,25 @@
   margin-top: 10px;
 }
 
+/* css blog card item */
 .blog-item {
   margin: 0rem 1rem;
 }
+
+.blog-item .card {
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-item .card .card-above {
+  height: 90%;
+}
+
+.blog-item .card .card-below {
+  height: calc(100% - 90%);
+  margin-bottom: 10px;
+}
+
 /* button add new post */
 .bl__container .bl__btn-add {
   position: fixed;
@@ -14,8 +30,119 @@
   height: 50px;
   color: #1976d2;
 }
+
 /* icon add */
 .bl__container .bl__btn-add i {
   transform: scale(3);
 }
 
+/* css post detail page */
+.pd__container {
+  width: 1000px;
+  height: auto;
+  background-color: #b0dfd7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* post detail page 's header */
+.pd__container .pd__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.pd__container .pd__header h3 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  font-family: 'Monsterrat';
+}
+
+.pd__container .pd__header ul {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-inline-start: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.pd__container .pd__header ul li {
+  margin: 0 10px;
+}
+
+.pd__container .pd__header ul li {
+  display: flex;
+  align-items: center;
+}
+
+.pd__container .pd__header ul li span {
+  color: #2e4330;
+  font-size: 1.5rem;
+}
+
+.pd__container .pd__header ul li i {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 1.5rem;
+  margin: 0 10px;
+}
+
+/* post detail page 's body */
+.pd__container .pd__body {
+  height: auto;
+  margin-top: 2rem;
+  width: 800px;
+  text-align: center;
+}
+
+.pd__container .pd__body p {
+  font-size: 1.2rem;
+  line-height: 2;
+}
+
+/* post detail page 's reply */
+.pd__container .pd__reply {
+  text-align: center;
+}
+
+.pd__container .pd__reply h4 {
+  font-size: 2rem;
+  font-weight: 500;
+  font-family: 'Monsterrat';
+}
+
+.pd__container .pd__reply form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pd__container .pd__reply form textarea {
+  width: 800px;
+  margin: auto;
+}
+
+.pd__container .pd__reply form button {
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 400px) {
+  .pd__container .pd__header ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pd__container .pd__header ul li{
+    margin: 10px 0;
+  }
+
+  .pd__container .pd__body p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
