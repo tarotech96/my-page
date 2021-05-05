@@ -9,5 +9,7 @@
 
 # Project description
 
+# Deploying to heroku
+- url: https://taroinjapan.herokuapp.com/
 
   

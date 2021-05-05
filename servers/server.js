@@ -7,6 +7,8 @@ import cors from "cors";
 import appRoutes from "./routes/index.js";
 import config from "./config.js";
 
+const PORT = process.env.PORT || 8080;
+
 // config app
 app
   .use(bodyParser.urlencoded({ extended: true }))
@@ -17,6 +19,6 @@ app
 appRoutes(app);
 
 // app listen on port
-app.listen(config.port, () => {
-  console.log(`App is listening on url http://localhost:${config.port}`);
+app.listen(PORT, () => {
+  console.log(`App is listening on url http://localhost:${PORT}`);
 });

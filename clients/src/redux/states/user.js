@@ -1,4 +1,5 @@
 export const initialState = {
   isLogin: false,
-  userInfo: {}
+  userInfo: {},
+  error: {}
 }
