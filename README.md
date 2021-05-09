@@ -10,6 +10,8 @@
 # Project description
 
 # Deploying to heroku
-- url: https://taroinjapan.herokuapp.com/
+- url: https://taroinjapan.herokuapp.com/ 
+
+Note: If you can't open website, please reload page
 
   
