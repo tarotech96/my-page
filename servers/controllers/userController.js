@@ -1,5 +1,8 @@
 "use strict";
 
+import FS from "fs";
+import Path from "path";
+
 import db from "../db.js";
 import User from "../models/user.js";
 
@@ -77,4 +80,31 @@ const updateProfile = async (req, res) => {
   }
 };
 
-export { login, register, updateProfile };
+/**
+ * handle download CV
+ * @param {*} req
+ * @param {*} res
+ * @return file
+ */
+const downloadCV = async (req, res) => {
+  try {
+    const pathFile = Path.dirname("./files");
+    const stream = await FS.createReadStream(`${pathFile}/job.pdf`);
+    stream.on("error", (error) => console.log("Error", error));
+    stream.on("ready", () => {
+      stream.read();
+    });
+    const stat = await FS.statSync(`${pathFile}/job.pdf`);
+    console.log(stat)
+    res.setHeader("Content-Length", stat.size);
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", "attachment; filename=job.pdf");
+    file.pipe(res);
+    // res.status(200).send(file);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: error.code });
+  }
+};
+
+export { login, register, updateProfile, downloadCV };

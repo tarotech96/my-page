@@ -1,4 +1,4 @@
-import { register } from 'api/api'
+import { register, downloadFile } from 'api/api'
 
 const registerUser = async (payload) => {
   try {
@@ -9,4 +9,13 @@ const registerUser = async (payload) => {
   }
 }
 
-export { registerUser }
+const downloadCV = async () => {
+  try {
+    const res = await downloadFile()
+    return res.data || {}
+  } catch (error) {
+    throw error
+  }
+}
+
+export { registerUser, downloadCV }

@@ -29,6 +29,19 @@ function PostDetail() {
       })
       .finally(() => {})
   }, [postId])
+
+  const format = (value) => {
+    return value < 10 ? `0${value}` : value
+  }
+
+  const getHoursAndMinutes = (date) => {
+    if (!date) {
+      return '00:00'
+    }
+    const myDate = new Date(date)
+    return `${format(myDate.getHours())}:${format(myDate.getMinutes())}`
+  }
+
   return (
     <div className="pd__container">
       {error.status && <span>{error.message}</span>}
@@ -41,11 +54,11 @@ function PostDetail() {
           </li>
           <li>
             <i className="far fa-calendar-alt"></i>
-            <span> CreatedAt: </span>
+            <span>{data.post.createdAt}</span>
           </li>
           <li>
             <i className="fas fa-clock"></i>
-            <span>Hours</span>
+            <span>{getHoursAndMinutes(data.post.createdAt)}</span>
           </li>
         </ul>
       </div>

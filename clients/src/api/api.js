@@ -6,7 +6,8 @@ import {
   GET_POST_BY_ID,
   LOGIN,
   REGISTER,
-  UPDATE_PROFILE
+  UPDATE_PROFILE,
+  DOWNLOAD_FILE
 } from 'constants/api_path'
 
 export const getPosts = () => instance.get(GET_LIST_POST)
@@ -16,3 +17,4 @@ export const getPostById = (postId) => instance.post(GET_POST_BY_ID, { postId })
 export const login = (payload) => instance.post(LOGIN, payload)
 export const register = (payload) => instance.post(REGISTER, payload)
 export const updateProfile = (payload) => instance.post(UPDATE_PROFILE, payload)
+export const downloadFile = () => instance.post(DOWNLOAD_FILE)

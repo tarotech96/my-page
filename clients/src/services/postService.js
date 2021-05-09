@@ -1,4 +1,4 @@
-import { getPosts, getPostById, createPost } from 'api/api'
+import { getPosts, getPostById, createPost, updatePost } from 'api/api'
 
 const getAllPost = async () => {
   try {
@@ -27,4 +27,13 @@ const createNewPost = async (data) => {
   }
 }
 
-export { getAllPost, getPostDetail, createNewPost }
+const postUpdate = async (data) => {
+  try {
+    const res = await updatePost(data)
+    return res.data || {}
+  } catch (error) {
+    throw error
+  }
+}
+
+export { getAllPost, getPostDetail, createNewPost, postUpdate }

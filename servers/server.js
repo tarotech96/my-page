@@ -5,7 +5,6 @@ const app = express();
 import bodyParser from "body-parser";
 import cors from "cors";
 import appRoutes from "./routes/index.js";
-import config from "./config.js";
 
 const PORT = process.env.PORT || 8080;
 

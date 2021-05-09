@@ -19,14 +19,15 @@ const getPosts = async (req, res) => {
       res.status(404).send("No post record found");
     } else {
       data.forEach((doc) => {
-        const { data } = doc.data();
         const post = new Post(
           doc.id,
-          data.title,
-          data.author,
-          data.body,
-          data.createdAt,
-          data.image
+          doc.data().title,
+          doc.data().author,
+          doc.data().body,
+          doc.data().createdAt,
+          doc.data().image,
+          doc.data().likeNumber,
+          doc.data().comments
         );
         listPosts.push(post);
       });
@@ -56,16 +57,17 @@ const getPostById = async (req, res) => {
       res.status(404).send("No post record found");
     } else {
       data.forEach((doc) => {
-        const { data } = doc.data();
         if (doc.id === postId) {
           res.status(200).send({
             ...post,
             id: doc.id,
-            title: data.title,
-            author: data.author,
-            body: data.body,
-            createdAt: data.createdAt,
-            image: data.image,
+            title: doc.data().title,
+            author: doc.data().author,
+            body: doc.data().body,
+            createdAt: doc.data().createdAt,
+            image: doc.data().image,
+            likeNumber: doc.data().likeNumber,
+            comments: doc.data().comments,
           });
         }
       });
@@ -88,7 +90,14 @@ const getPostById = async (req, res) => {
  */
 const createPost = async (req, res) => {
   try {
-    await firestore.collection("posts").doc().set({ data: req.body });
+    await firestore
+      .collection("posts")
+      .doc()
+      .set({
+        ...req.body,
+        likeNumber: 0,
+        comments: "",
+      });
     res.status(200).send({
       data: req.body,
       status: 1,
@@ -106,12 +115,12 @@ const createPost = async (req, res) => {
  */
 const updatePost = async (req, res) => {
   try {
-    const postId = req.params.postId;
+    const postId = req.body.postId;
     const post = await firestore.collection("posts").doc(postId);
     if (!post.exists) {
       res.status(404).send("Post with given id not found");
     } else {
-      await post.update({ data: req.body });
+      await post.update(req.body);
       res.status(200).send({
         message: "Updated post successfully",
         data: post,

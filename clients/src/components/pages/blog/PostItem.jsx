@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import './Blog.css'
 import PropTypes from 'prop-types'
 import {
@@ -14,10 +14,11 @@ import {
 } from '@material-ui/core'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import ShareIcon from '@material-ui/icons/Share'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
+// import MoreVertIcon from '@material-ui/icons/MoreVert'
 import logo from 'assets/images/logo.png'
 import { formatDateWithPadding } from 'constants/utilities'
 import { useHistory } from 'react-router-dom'
+import { postUpdate } from 'services/postService'
 
 const useStyles = makeStyles((theme) => ({
   media: {
@@ -42,17 +43,24 @@ function PostItem({ sttItem, item }) {
   const history = useHistory()
   const classes = useStyles()
 
+  const likePost = useCallback((post) => {
+    postUpdate({ postId: post.id, likeNumber: post.likeNumber + 1 })
+      .then((data) => {})
+      .catch((error) => {})
+      .finally(() => {})
+  }, [])
+
   return (
     <div className="blog-item">
       <Card className="card">
         <div className="card-above">
           <CardHeader
             avatar={<Avatar aria-label="recipe" className={classes.avatar} src={logo} alt={'logo'} />}
-            action={
-              <IconButton aria-label="settings">
-                <MoreVertIcon />
-              </IconButton>
-            }
+            // action={
+            //   <IconButton aria-label="settings">
+            //     <MoreVertIcon />
+            //   </IconButton>
+            // }
             title={item.title}
             subheader={formatDateWithPadding(item.createdAt, 'yyyy-MM-dd')}
           />
@@ -72,8 +80,9 @@ function PostItem({ sttItem, item }) {
         </div>
         <div className="card-below">
           <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
+            <IconButton aria-label="add to favorites" onClick={() => likePost(item)}>
               <FavoriteIcon />
+              <span style={{ fontSize: '1rem' }}>{item.likeNumber}</span>
             </IconButton>
             <IconButton aria-label="share">
               <ShareIcon />

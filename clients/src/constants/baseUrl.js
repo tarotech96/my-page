@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: process.env.URL_BACKEND_HEROKU
+  baseURL: 'http://localhost:8080'
 })
 
 export default instance
