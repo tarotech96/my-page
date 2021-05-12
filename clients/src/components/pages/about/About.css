@@ -9,12 +9,12 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 400px;
   background-color: #2c3033;
   background-image: url('assets/images/mountain.png');
   background-size: cover;
   background-repeat: no-repeat;
   opacity: 0.7;
+  padding: 2rem;
 }
 
 .about .ab__header img {
@@ -33,7 +33,6 @@
 .about .ab__details {
   display: flex;
   align-items: center;
-  height: auto;
   background-color: #181a22;
   opacity: 0.8;
 }
