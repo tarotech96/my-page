@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import './assets/css/main.css'
-import App from './App.jsx'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
@@ -12,6 +11,7 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 import mySagas from './redux/sagas'
 import appReducers from './redux/reducers'
 import { PersistGate } from 'redux-persist/integration/react'
+import Loading from 'components/common/loading/Loading'
 
 // create a redux middleware and connect the saga to redux store
 const sagaMiddleware = createSagaMiddleware()
@@ -35,10 +35,14 @@ const store = createStore(pReducer, initialState, composeEnhancer(applyMiddlewar
 const persistor = persistStore(store)
 sagaMiddleware.run(mySagas)
 
+const Layout = React.lazy(() => import('./App'))
+
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
-      <App />
+      <Suspense fallback={<Loading />}>
+        <Layout />
+      </Suspense>
     </PersistGate>
   </Provider>,
   document.getElementById('root')

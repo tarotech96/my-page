@@ -39,7 +39,6 @@
 /* css post detail page */
 .pd__container {
   width: 1000px;
-  height: auto;
   background-color: #b0dfd7;
   display: flex;
   flex-direction: column;
@@ -94,7 +93,6 @@
 
 /* post detail page 's body */
 .pd__container .pd__body {
-  height: auto;
   margin-top: 2rem;
   width: 800px;
   text-align: center;
@@ -128,7 +126,7 @@
 }
 
 .pd__container .pd__reply form button {
-  margin-top: 1rem;
+  margin: 1rem 0rem;
 }
 
 @media screen and (max-width: 400px) {

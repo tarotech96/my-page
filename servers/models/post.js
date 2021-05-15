@@ -1,6 +1,6 @@
 "use strict";
 class Post {
-  constructor(id, title, author, body, createdAt, imgUrl, likeNumber, comments) {
+  constructor(id, title, author, body, createdAt, imgUrl, likeNumber) {
     this.id = id;
     this.title = title;
     this.author = author;
@@ -8,7 +8,6 @@ class Post {
     this.createdAt = createdAt;
     this.imgUrl = imgUrl;
     this.likeNumber = likeNumber;
-    this.comments = comments;
   }
 }
 

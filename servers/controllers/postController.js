@@ -18,7 +18,7 @@ const getPosts = async (req, res) => {
     if (data.empty) {
       res.status(404).send("No post record found");
     } else {
-      data.forEach((doc) => {
+      data.forEach(async (doc) => {
         const post = new Post(
           doc.id,
           doc.data().title,
@@ -26,8 +26,7 @@ const getPosts = async (req, res) => {
           doc.data().body,
           doc.data().createdAt,
           doc.data().image,
-          doc.data().likeNumber,
-          doc.data().comments
+          doc.data().likeNumber
         );
         listPosts.push(post);
       });
@@ -40,6 +39,26 @@ const getPosts = async (req, res) => {
     res.status(500).send(error.code);
   }
 };
+
+// const getListCommentsOfPost = async (postId) => {
+//   try {
+//     const comments = firestore.collection(`posts/${postId}/comments`);
+//     const data = await comments.get();
+//     let list = [];
+//     if (data.exists) {
+//       data.forEach((doc) => {
+//         const comment = {
+//           commentId: doc.id,
+//           subject: doc.data().comment,
+//         };
+//         list.push(comment);
+//       });
+//     }
+//     return list;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 /**
  * get a post by postId
@@ -93,11 +112,13 @@ const createPost = async (req, res) => {
     await firestore
       .collection("posts")
       .doc()
-      .set({
-        ...req.body,
-        likeNumber: 0,
-        comments: "",
-      });
+      .set(
+        {
+          ...req.body,
+          likeNumber: 0,
+        },
+        { merge: true }
+      );
     res.status(200).send({
       data: req.body,
       status: 1,
@@ -131,4 +152,25 @@ const updatePost = async (req, res) => {
   }
 };
 
-export { getPosts, getPostById, createPost, updatePost };
+/**
+ * Handle comment to the post
+ * @param {*} req
+ * @param {*} res
+ * @return post
+ */
+const commentPost = async (req, res) => {
+  try {
+    const { postId, comment } = req.body;
+    const post = await firestore
+      .collection("posts")
+      .doc(postId)
+      .collection("comments")
+      .doc()
+      .set({ comment }, { merge: true });
+    res.status(200).send(post);
+  } catch (error) {
+    res.status(500).send(error.code);
+  }
+};
+
+export { getPosts, getPostById, createPost, updatePost, commentPost };
