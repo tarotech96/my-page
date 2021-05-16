@@ -14,4 +14,8 @@
 
 Note: If you can't open website, please reload page
 
+    for Mac: CMD + Shift + R
+    
+    for Windown: Ctrl + F5
+
   
